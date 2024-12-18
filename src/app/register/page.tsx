@@ -9,15 +9,13 @@ export default function Register() {
   return (
     <div className="flex">
         <div className="log-img flex flex-col items-start w-[695px] h-[100vh] overflow-hidden bg-no-repeat text-white relative">
-          <Image className="w-[695px]" src="/login-img.png" width={695} height={1080} alt=""/>
+          <Image className="w-[695px]" src="/register-img.png" width={695} height={1080} alt=""/>
           <div className="absolute pl-[103px] pt-[72px] space-y-[240px]">
           <Link href="/" className="">
             <Image src="/logo-white.png" alt="Logo" width={175} height={36}/>
           </Link>
           <h1 className="text-[89px] font-bold font-inter leading-[108px]">
-          Selamat 
-          Datang 
-          Kembali
+          Halo, User Baru
           </h1>
           </div>
         </div>
@@ -27,14 +25,14 @@ export default function Register() {
             <Image src="/arr-back.svg" width={21} height={21} alt=""/>
             </Link>
             <h1 className="text-[40px] font-bold font-raleway text-gray-800">
-              Masukkan Data Login Anda
+               Buat Akun Taniku
             </h1>
-            <h3 className="text-[20px] font-semibold font-inter text-gray-500 mt-3">
-              Masuk ke akunmu
+            <h3 className="text-[18px] font-semibold font-inter text-gray-500 mt-3">
+               Buat akun barumu
             </h3>
             <form action="#" method="post" className="mt-10">
               <div className="username flex flex-col space-y-[20px]">
-                <label className="text-[24px] font-semibold font-raleway text-gray-800">Username</label>
+                <label className="text-[24px] font-semibold font-inter text-gray-800">Username</label>
                 <Input
                   placeholder="Enter text here"
                   type="text"
@@ -47,9 +45,16 @@ export default function Register() {
                   type="password"
                 />
               </div>
+              <div className="password flex flex-col mt-6 space-y-[20px]">
+                <label className="text-[24px] font-semibold font-inter text-gray-800">Confirm Password</label>
+                <Input
+                  placeholder="Enter text here"
+                  type="password"
+                />
+              </div>
               <div className="mt-[40px]">
               <Button
-                label="Login"
+                label="Register"
                 onClick={() => {}}
                 primary
                 size="large"
@@ -58,9 +63,9 @@ export default function Register() {
               </div>
             </form>
 
-            <h4 className="text-center w-full mt-8 text-[24px] font-inter text-gray-500">
-              Belum punya akun?
-              <a href="#" className="text-primary hover:underline"> Daftar</a>
+            <h4 className="text-center w-full mt-8 text-[18px] font-inter text-gray-500">
+            Sudah punya akun?
+              <a href="/login" className="hover:underline text-[#00A876]"> Masuk</a>
             </h4>
           </div>
         </div>

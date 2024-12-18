@@ -1,9 +1,11 @@
 // pages/index.js
 'use client';
+import { useRef } from "react";
 import Image from "next/image";
 import { Inter } from 'next/font/google'
 import { Raleway } from 'next/font/google'
 import { Button } from '@/components/button/Button'
+import Link from "next/link";
 // import { Input } from "postcss";
 const inter = Inter({ subsets: ['latin'] })
 const raleway = Raleway({ subsets: ['latin'] })
@@ -22,7 +24,84 @@ const toggleDropdown = (index: number) => {
   }
 };
 
+  const testimonials = [
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Bagas Dwi C",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/john.png",
+    },
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Bagas Dwi C",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/budi.png",
+    },
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Bagas Dwi C",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/supri.png",
+    },
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Santoso",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/budi.png",
+    },
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Bagas Dwi C",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/supri.png",
+    },
+    {
+      stars: 5,
+      message: "I am very satisfied with the Taniku service, my sales have increased by 80%.",
+      logo: "/gulugulu.png",
+      name: "Bagas Dwi C",
+      title: "Sales Kenongo Mukti Farmers Group",
+      pic: "/john.png",
+    },
+  ];
+
+const questions = [
+  "Apa itu Taniku?",
+  "Bagaimana cara menyewa alat di Taniku?",
+  "Apakah Taniku tersedia di seluruh Indonesia?",
+  "Bagaimana cara menjadi mitra Taniku?"
+];
+
 export default function Home() {
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  const handlePrev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({
+        left: -500, // Adjust scroll value
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({
+        left: 500, // Adjust scroll value
+        behavior: 'smooth',
+      });
+    }
+  };
   return (
     <div>
         <div className="bg-white flex justify-between items-center py-[64px] px-[224px]">
@@ -51,10 +130,10 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-12">
             <button className="px-8 py-4 text-lg font-semibold font-raleway text-gray-700 hover:cursor-pointer">
-              <a>Masuk</a>
+              <Link href="/login" >Masuk</Link>
             </button>
             <button className="px-8 w-36 h-14 text-lg font-bold font-raleway text-[#00A876] border-2 border-[#00A876] rounded-md hover:cursor-pointer">
-              <a>Daftar</a>
+              <Link href="/register" >Daftar</Link>
             </button>
           </div>
         </div>
@@ -147,9 +226,12 @@ export default function Home() {
               <p className="mt-7 w-[434px] text-justify text-[18px] font-inter font-medium leading-[28px] text-[#414141]">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua incididunt ut labore et dolore magna aliqua
               </p>
-              <button className="mt-10 w-[217px] h-[57px] rounded-[10px] bg-[#00A876] text-[20px] font-raleway font-bold text-white transition-all duration-500 hover:text-[#00A876] hover:bg-white hover:border hover:border-[#00A876]">
-                Detail Layanan
-              </button>
+              <Button
+                label="Detail Layanan"
+                onClick={() => {}}
+                primary
+                size="medium"
+              />
             </div>
             <Image src="/taniku.png" width={523} height={475} alt="" />
             <div className="list-keuntungan mt-8 ml-12 flex flex-col">
@@ -248,22 +330,19 @@ export default function Home() {
                   className="ml-[28px] w-[690px] h-[72px] bg-transparent border-none text-[28px] font-raleway font-semibold text-[#414141] focus:outline-none"
                 />
               </div>
-              {[...Array(4)].map((_, index) => (
+              {questions.map((question, index) => (
                 <div
                   key={index}
                   className="dropdown w-[828px] mb-[58px] border-gray-200"
                 >
-                  <button onClick={() => toggleDropdown(index)} className="w-full dropdown-title flex justify-between items-center">
+                  <button
+                    onClick={() => toggleDropdown(index)}
+                    className="w-full dropdown-title flex justify-between items-center"
+                  >
                     <h1 className="text-[30px] font-raleway font-bold text-[#414141]">
-                      {index === 0
-                        ? "Apa itu Taniku?"
-                        : index === 1
-                        ? "Bagaimana cara menyewa alat di Taniku?"
-                        : "Apa itu Taniku?"}
+                      {question}
                     </h1>
-                    <div
-                      className="bg-none border-none"
-                    >
+                    <div className="bg-none border-none">
                       <Image
                         src="/chevron-down.svg"
                         width={40}
@@ -282,44 +361,55 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+
             </div>
           </div>
           <div id="sec6" className="mt-10">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-4xl font-raleway font-bold text-gray-700">
-                  Kata <span className="text-green-600">mereka</span> tentang kami
-                </h1>
-                <p className="mt-6 w-[434px] text-lg font-inter font-medium leading-7 text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                </p>
-              </div>
-              <div className="mt-14 flex gap-4">
-                <button id="prev" className="bg-none border-none">
-                  <Image src="/prev.svg" width={72} height={72} alt="" />
-                </button>
-                <button id="next" className="bg-none border-none">
-                  <Image src="/next-slide.svg" width={72} height={72} alt="" />
-                </button>
-              </div>
-            </div>
-          
-            <div id="slider" className="mt-16 w-[1471px] flex gap-5 overflow-x-scroll scroll-smooth">
-              {[...Array(6)].map((_, index) => (
-                <div key={index} className="w-[477px] h-[439px] relative flex flex-shrink-0 flex-col items-start p-12 bg-[#F2FBF8] rounded-[50px] overflow-hidden">
-                  <Image src="/star.svg"  width={24} height={24} alt="Star" />
-                  <p className="w-[334px] text-lg font-inter font-medium leading-7 text-gray-700">
-                    I am very satisfied with the Taniku service, my sales have increased by 80%.
-                  </p>
-                  <Image className="w-32 mt-6 mb-7" src="/image%20107.png"  width={100} height={100} alt="Logo" />
-                  <h1 className="text-[22px] font-raleway font-bold text-gray-700">Bagas Dwi C</h1>
-                  <h2 className="w-[240px] text-[18px] font-inter font-medium leading-7 text-gray-400">
-                    Sales Kenongo Mukti Farmers Group
-                  </h2>
-                  <Image className="absolute bottom-0 right-[32px]" src="/john.png" width={235} height={230} alt="Pic" />
-                </div>
+          <div className="flex justify-between">
+        <div>
+          <h1 className="text-4xl font-raleway font-bold text-gray-700">
+            Kata <span className="text-green-600">mereka</span> tentang kami
+          </h1>
+          <p className="mt-6 w-[434px] text-lg font-inter font-medium leading-7 text-gray-700">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          </p>
+        </div>
+        <div className="mt-14 flex gap-4">
+          <button id="prev" className="bg-none border-none" onClick={handlePrev}>
+            <Image src="/prev.svg" width={72} height={72} alt="Previous Slide" />
+          </button>
+          <button id="next" className="bg-none border-none" onClick={handleNext}>
+            <Image src="/next-slide.svg" width={72} height={72} alt="Next Slide" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="slider"
+        ref={sliderRef}
+        className="mt-16 w-[1471px] flex gap-5 example overflow-x-scroll scroll-smooth"
+      >
+        {testimonials.map((item, index) => (
+          <div
+            key={index}
+            className="w-[477px] h-[439px] relative flex flex-shrink-0 flex-col items-start p-12 bg-[#F2FBF8] rounded-[50px] overflow-hidden"
+          >
+            <div className="flex space-x-[10px]">
+              {[...Array(item.stars)].map((_, starIndex) => (
+                <Image key={starIndex} src="/star.svg" width={24} height={24} alt="Star" />
               ))}
             </div>
+            <p className="w-[334px] text-lg font-inter font-medium leading-7 text-gray-700 mt-[18px]">
+              {item.message}
+            </p>
+            <Image className="w-32 mt-6 mb-7 ml-[-20px]" src={item.logo} width={100} height={100} alt="Logo" />
+            <h1 className="text-[22px] font-raleway font-bold text-gray-700">{item.name}</h1>
+            <h2 className="w-[240px] text-[18px] font-inter font-medium leading-7 text-gray-400">{item.title}</h2>
+            <Image className="absolute bottom-0 right-[32px]" src={item.pic} width={235} height={230} alt="Pic" />
+          </div>
+        ))}
+      </div>
+            
           </div>
 
         </main>

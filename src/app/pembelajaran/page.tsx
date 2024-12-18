@@ -1,10 +1,27 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@/components/button/Button'
+
+const links = [
+  {
+    category: "Fitur 1",
+    links: ["Podcast 1", "Artikel 1", "Video 1"],
+  },
+  {
+    category: "Fitur 2",
+    links: ["Podcast 2", "Artikel 2", "Video 2"],
+  },
+  {
+    category: "Fitur 3",
+    links: ["Podcast 3", "Artikel 3", "Video 3"],
+  },
+];
 
 const Pemebelajaran: React.FC = () => {
   return (
     <div className="flex">
-      <div className="flex flex-col items-center w-[340px] bg-gray-100 pt-[83px]">
+      <div className="flex flex-col items-center w-[340px] h-[100vh] bg-white pt-[83px] fixed">
         <Image className="" src="/logo.png" alt="Logo" width={175.33} height={64} />
         <ul className="space-y-[40px] w-[175px] mt-[92px]">
           <li className="flex items-start space-x-[24px]">
@@ -22,10 +39,10 @@ const Pemebelajaran: React.FC = () => {
         </ul>
       </div>
 
-      <div className="flex-grow">
-        <main className="ml-[71px] mt-[80px] w-[1333px]">
+      <div className="ml-[411px] flex-grow">
+        <main className="mt-[80px] w-[1333px]">
           <div className="flex justify-between items-center mb-[40px]">
-            <div className="flex items-center space-x-[28px] bg-gray-200 p-[32px] rounded-[25px]">
+            <div className="flex items-center space-x-[28px] bg-[#F2FBF8] p-[32px] rounded-[25px]">
               <button>
                 <Image src="/search.svg" alt="Search Icon" width={36} height={36} />
               </button>
@@ -44,14 +61,17 @@ const Pemebelajaran: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-[40px]">
+          <div className="space-y-[68px]">
             {[1, 2].map((_, index) => (
-              <section className="space-y-[20px]" key={index}>
+              <section className="space-y-[50px]" key={index}>
                 <div className="flex justify-between items-center">
-                  <h1 className="text-[32px] font-semibold text-gray-800">Internet of Things untuk Pertanian dan Perkebunan</h1>
-                  <button className="w-[190px] h-[48px] bg-[#00A876] text-white font-bold text-[18px] rounded-[10px]">
-                    <Link href="#">Selengkapnya &gt;</Link>
-                  </button>
+                  <h1 className="text-[32px] font-semibold text-gray-800 font-raleway">Internet of Things untuk Pertanian dan Perkebunan</h1>
+                  <Button
+                    label="Selengkapnya"
+                    onClick={() => {}}
+                    primary
+                    size="small"
+                  />
                 </div>
                 <div className="flex space-x-[20px]">
                   {[1, 2, 3].map((__, cardIndex) => (
@@ -68,14 +88,14 @@ const Pemebelajaran: React.FC = () => {
                           width={24}
                           height={24}
                         />
-                        <p className="absolute top-[140px] left-[240px] bg-white bg-opacity-60 p-[6px] rounded-[5px] text-gray-800 font-medium text-[14px]">
-                          <Image src="/clock.png" alt="Clock Icon" width={16} height={16} className="inline-block mr-[4px]" />
+                        <p className="absolute top-[14px] right-[14px] bg-white bg-opacity-60 p-[6px] rounded-[5px] text-gray-800 font-medium text-[14px] font-inter flex items-center">
+                          <Image src="/clock.svg" alt="Clock Icon" width={16} height={16} className="inline-block mr-[4px]" />
                           08 hr 12 mins
                         </p>
                       </div>
                       <div className="px-[20px] ">
                         <div className="flex justify-between items-center mb-[12px]">
-                          <Link href="/videolist" className="text-[24px] font-semibold font-raleway text-gray-800 truncate">
+                          <Link href="/pembelajaran/modul" className="text-[24px] font-semibold font-raleway text-gray-800 truncate">
                             Otomatisasi penyiraman tanaman
                           </Link>
                           <Image src="/arrow-up-right.svg" alt="Arrow Icon" width={24} height={24} />
@@ -108,39 +128,52 @@ const Pemebelajaran: React.FC = () => {
             ))}
           </div>
         </main>
-        <footer className="p-[40px] bg-gray-100">
+        <footer className="p-[40px] bg-white">
           <div className="grid grid-cols-2 gap-[40px]">
             <div>
-              <h1 className="text-[32px] font-bold text-gray-800">Taniku</h1>
-              <p className="text-gray-600 text-[16px]">
-                Taniku is a platform for those of you who want to increase your business opportunities...
+              <h1 className="text-[36px] font-bold text-gray-800 font-raleway">Taniku</h1>
+              <p className="text-gray-600 w-[466px] text-[16px] mt-[18px]">
+              Taniku is a platform for those of you who want to increase your business opportunities and opportunities to be more attractive and recognized by many people. With Taniku increase your farming plan.
               </p>
-              <div className="flex space-x-[10px] mt-[20px]">
-                {[1, 2, 3].map((_, iconIndex) => (
+              <div className="flex space-x-[10px] mt-[40px]">
                   <Image
-                    key={iconIndex}
-                    src={`/Group%201${3 - iconIndex}.png`}
+                    src={`/Twitter%20Icon.svg`}
                     alt="Social Icon"
-                    width={24}
-                    height={24}
+                    width={50}
+                    height={50}
                   />
-                ))}
+                  <Image
+                    src={`/Instagram%20Icon.svg`}
+                    alt="Social Icon"
+                    width={50}
+                    height={50}
+                  />
+                  <Image
+                    src={`/Facebook%20Icon.svg`}
+                    alt="Social Icon"
+                    width={50}
+                    height={50}
+                  />
               </div>
             </div>
             <div className="grid grid-cols-3">
-              {[1, 2, 3].map((_, linkIndex) => (
-                <ul key={linkIndex} className="space-y-[10px]">
-                  <li className="text-gray-800 font-bold">Fitur</li>
-                  {[1, 2, 3].map((__, itemIndex) => (
-                    <li key={itemIndex}>
-                      <Link href="#" className="text-gray-600">Podcast</Link>
+              {links.map((section, sectionIndex) => (
+                <ul key={sectionIndex} className="space-y-[10px]">
+                  <li className="text-gray-800 text-[24px] font-semibold font-raleway">
+                    {section.category}
+                  </li>
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <Link href="#" className="text-gray-600">
+                        {link}
+                      </Link>
                     </li>
                   ))}
                 </ul>
               ))}
             </div>
           </div>
-          <div className="text-center mt-[20px] text-gray-500">Copyright © 2023. Taniku All right reserved</div>
+          <div className="text-center mt-[20px] text-gray-500 font-inter">Copyright © 2023. Taniku All right reserved</div>
         </footer>
       </div>
     </div>
